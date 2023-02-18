@@ -7,8 +7,9 @@
     --bg-color: #E8E8E8;
     --board-color: #b9b9b9;
     --board-dark-color: #a0a0a0;
-    --food-color: #707070;
+    --food-color: #78001C;
     --title: #919191;
+    --head: #28d428;
 
     /* Text Color */
     --text-color: #FFFFFF;
@@ -27,6 +28,7 @@
         --board-dark-color: #000000;
         --food-color: #78001C;
         --title: #919090;
+        --head: #228B22;
     
         /* Text Color */
         --text-color: #a3a3a3;
@@ -488,7 +490,7 @@ footer {
 }
 
 .play-board .head {
-    background: var(--text-color);
+    background: var(--head);
 }
 
 .controls {
