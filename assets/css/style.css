@@ -1,0 +1,538 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+/* Light Color Mode */
+:root {
+    /* BG Colors */
+    --bg-color: #E8E8E8;
+    --board-color: #b9b9b9;
+    --board-dark-color: #a0a0a0;
+    --food-color: #707070;
+    --title: #919191;
+
+    /* Text Color */
+    --text-color: #FFFFFF;
+    --footer-color: #000000;
+
+    /* Box Shadow */
+    --box-shadow: rgba(255, 255, 255, 0.9);
+
+}
+
+/* Dark color Mode */
+:root[theme = "dark"] {
+        /* BG Colors */
+        --bg-color: #212121;
+        --board-color: #191919;
+        --board-dark-color: #000000;
+        --food-color: #78001C;
+        --title: #919090;
+    
+        /* Text Color */
+        --text-color: #a3a3a3;
+        --footer-color: #ffffff;
+    
+        /* Box Shadow */
+        --box-shadow: rgba(53, 53, 53, 0.9); 
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+    overflow: hidden;
+}
+
+
+/* Sweet Alert */
+.popup_container {
+    background: var(--bg-color) !important;
+}
+
+.title {
+    color: var(--title) !important;
+    font-weight: 700 !important;
+    font-size: 25px !important;
+}
+
+.confirm {
+    background: var(--board-dark-color) !important;
+    color: var(--text-color) !important;
+}
+
+.confirm:focus {
+    box-shadow: none !important;
+}
+
+/* Loader */
+.loader-container{
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    transform: translateX(-50%);
+    background: var(--bg-color);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    --path: #2f3545;
+    --dot: #5628ee;
+    --duration: 3s;
+    width: 44px;
+    height: 44px;
+    position: relative;
+}
+  
+.loader:before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    display: block;
+    background: var(--dot);
+    top: 37px;
+    left: 19px;
+    transform: translate(-18px, -18px);
+    animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+.loader svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.loader svg rect, .loader svg polygon, .loader svg circle {
+    fill: none;
+    stroke: var(--path);
+    stroke-width: 10px;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.loader svg polygon {
+    stroke-dasharray: 145 76 145 76;
+    stroke-dashoffset: 0;
+    animation: pathTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+.loader svg rect {
+    stroke-dasharray: 192 64 192 64;
+    stroke-dashoffset: 0;
+    animation: pathRect 3s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+.loader svg circle {
+    stroke-dasharray: 150 50 150 50;
+    stroke-dashoffset: 75;
+    animation: pathCircle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+.loader.triangle {
+    width: 48px;
+}
+
+.loader.triangle:before {
+    left: 21px;
+    transform: translate(-10px, -18px);
+    animation: dotTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+
+@keyframes pathTriangle {
+    33% {
+    stroke-dashoffset: 74;
+    }
+
+    66% {
+    stroke-dashoffset: 147;
+    }
+
+    100% {
+    stroke-dashoffset: 221;
+    }
+}
+
+@keyframes dotTriangle {
+    33% {
+    transform: translate(0, 0);
+    }
+
+    66% {
+    transform: translate(10px, -18px);
+    }
+
+    100% {
+    transform: translate(-10px, -18px);
+    }
+}
+
+@keyframes pathRect {
+    25% {
+    stroke-dashoffset: 64;
+    }
+
+    50% {
+    stroke-dashoffset: 128;
+    }
+
+    75% {
+    stroke-dashoffset: 192;
+    }
+
+    100% {
+    stroke-dashoffset: 256;
+    }
+}
+
+@keyframes dotRect {
+    25% {
+    transform: translate(0, 0);
+    }
+
+    50% {
+    transform: translate(18px, -18px);
+    }
+
+    75% {
+    transform: translate(0, -36px);
+    }
+
+    100% {
+    transform: translate(-18px, -18px);
+    }
+}
+
+@keyframes pathCircle {
+    25% {
+    stroke-dashoffset: 125;
+    }
+
+    50% {
+    stroke-dashoffset: 175;
+    }
+
+    75% {
+    stroke-dashoffset: 225;
+    }
+
+    100% {
+    stroke-dashoffset: 275;
+    }
+}
+
+.loader {
+    display: inline-block;
+    margin: 0 16px;
+}
+
+
+/* Light Dark Toggle Style */
+.toggleWrapper {
+    overflow: hidden;
+    color: white;
+    position: absolute;
+    top: 4%;
+    right: 2%;
+}
+  
+.toggleWrapper input {
+    position: absolute;
+    left: -99em;
+}
+  
+.toggle {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    width: 90px;
+    height: 50px;
+    background-color: #83d8ff;
+    border-radius: 84px;
+    transition: background-color 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.toggle:before {
+    content: '';
+    position: absolute;
+    left: -50px;
+    top: 15px;
+    font-size: 18px;
+}
+
+.toggle:after {
+    content: '';
+    position: absolute;
+    right: -48px;
+    top: 15px;
+    font-size: 18px; 
+}
+
+.toggle__handler {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    top: 3px;
+    left: 3px;
+    width: 44px;
+    height: 44px;
+    background-color: #ffcf96;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+    transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: rotate(-45deg);
+}
+
+.toggle__handler .crater {
+    position: absolute;
+    background-color: #e8cda5;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    border-radius: 100%;
+}
+
+.toggle__handler .crater--1 {
+    top: 18px;
+    left: 10px;
+    width: 4px;
+    height: 4px;
+}
+
+.toggle__handler .crater--2 {
+    top: 28px;
+    left: 22px;
+    width: 6px;
+    height: 6px;
+}
+
+.toggle__handler .crater--3 {
+    top: 10px;
+    left: 25px;
+    width: 8px;
+    height: 8px;
+}
+
+.star {
+    position: absolute;
+    background-color: #fff;
+    transition: all 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    border-radius: 50%;
+}
+
+.star--1 {
+    top: 10px;
+    left: 35px;
+    z-index: 0;
+    width: 30px;
+    height: 3px;
+}
+
+.star--2 {
+    top: 18px;
+    left: 28px;
+    z-index: 1;
+    width: 30px;
+    height: 3px;
+}
+
+.star--3 {
+    top: 27px;
+    left: 40px;
+    z-index: 0;
+    width: 30px;
+    height: 3px;
+}
+
+.star--4, .star--5, .star--6 {
+    opacity: 0;
+    transition: all 300ms 0 cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.star--4 {
+    top: 16px;
+    left: 11px;
+    z-index: 0;
+    width: 2px;
+    height: 2px;
+    transform: translate3d(3px, 0, 0);
+}
+
+.star--5 {
+    top: 32px;
+    left: 17px;
+    z-index: 0;
+    width: 3px;
+    height: 3px;
+    transform: translate3d(3px, 0, 0);
+}
+
+.star--6 {
+    top: 36px;
+    left: 28px;
+    z-index: 0;
+    width: 2px;
+    height: 2px;
+    transform: translate3d(3px, 0, 0);
+}
+
+input:checked + .toggle {
+    background-color: #749dd6;
+}
+
+input:checked + .toggle .toggle__handler {
+    background-color: #ffe5b5;
+    transform: translate3d(40px, 0, 0) rotate(0);
+}
+
+input:checked + .toggle .toggle__handler .crater {
+    opacity: 1;
+}
+
+input:checked + .toggle .star--1 {
+    width: 2px;
+    height: 2px;
+}
+
+input:checked + .toggle .star--2 {
+    width: 4px;
+    height: 4px;
+    transform: translate3d(-5px, 0, 0);
+}
+
+input:checked + .toggle .star--3 {
+    width: 2px;
+    height: 2px;
+    transform: translate3d(-7px, 0, 0);
+}
+
+input:checked + .toggle .star--4, input:checked + .toggle .star--5, input:checked + .toggle .star--6 {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+input:checked + .toggle .star--4 {
+    transition: all 300ms 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+input:checked + .toggle .star--5 {
+    transition: all 300ms 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+input:checked + .toggle .star--6 {
+    transition: all 300ms 400ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+
+/* Footer */
+footer {
+    position: absolute;
+    left: 2%;
+    bottom: 2%;
+    color: var(--footer-color);
+}
+   
+/* Snake Game Style */
+.wrapper {
+    width: 65vmin;
+    height: 70vmin;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 5px;
+    background: var(--board-color);
+    box-shadow: 0 20px 40px var(--box-shadow);
+}
+
+.game-details {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 20px 27px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.play-board {
+    width: 100%;
+    height: 100%;
+    background: var(--board-dark-color);
+    display: grid;
+    grid-template: repeat(30,  1fr) / repeat(30,  1fr);
+}
+
+
+.play-board .food {
+    background: var(--food-color);
+}
+
+.play-board .head {
+    background: var(--text-color);
+}
+
+.controls {
+    display: none;
+    justify-content: space-between;
+}
+
+.controls i {
+    padding: 25px 0;
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    width: calc(100% / 4);
+    cursor: pointer;
+    border-right: 1px solid var(--bg-color);
+}
+
+@media screen and (max-width: 800px) {
+    .wrapper {
+        width: 90vmin;
+        height: 100vmin;
+        margin: 100px 0;
+    }
+    .game-details {
+        font-size: 1rem;
+        padding: 15px 27px;
+    }
+    .controls {
+        display: flex;
+    }
+    .controls i {
+        padding: 15px 0;
+        font-size: 1rem;
+    }
+
+    .toggleWrapper {
+        right: 0;
+        padding: 0 44px;
+    }
+
+    footer {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 4%;
+    }
+}
+
